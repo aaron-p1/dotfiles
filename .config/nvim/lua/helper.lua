@@ -136,6 +136,10 @@ function helper.keymap_expr_i_s(...)
 	keymap_expr_s('i', ...)
 end
 
+function helper.keymap_expr_s_s(...)
+	keymap_expr_s('s', ...)
+end
+
 -- KEYMAPS END
 
 return helper
