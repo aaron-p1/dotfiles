@@ -1,0 +1,12 @@
+/*
+!/.gitignore
+
+# CONFIG:
+# has to be ignored and unignored for subdirectories to be found
+!/.config
+/.config/*
+
+!/.config/nvim
+/.config/nvim/.netrwhist
+/.config/nvim/spell/*
+!/.config/nvim/spell/.gitkeep

@@ -1,0 +1,537 @@
+let g:python3_host_prog='/usr/bin/python3'
+
+call plug#begin(stdpath('data') . '/plugged')
+
+" COLORSCHEME:
+Plug 'morhetz/gruvbox'
+
+" PLUGINS:
+" Colored parentheses
+Plug 'luochen1990/rainbow'
+
+" preview css colors
+Plug 'ap/vim-css-color'
+
+" indent guides
+Plug 'nathanaelkane/vim-indent-guides'
+
+Plug 'tpope/vim-fugitive'
+
+Plug 'airblade/vim-gitgutter'
+
+" multiple cursors
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+" auto tag creation
+Plug 'ludovicchabant/vim-gutentags'
+
+" file manager and git symbols addon
+Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" commenting
+Plug 'tpope/vim-commentary'
+
+" commenting
+Plug 'preservim/nerdcommenter'
+
+" case changing + substitution
+Plug 'tpope/vim-abolish'
+
+" syntax
+" changed indent/html.vim l 593
+Plug 'sheerun/vim-polyglot'
+
+" vimtex
+Plug 'lervag/vimtex'
+
+" highlingt html tags
+Plug 'valloric/MatchTagAlways'
+
+Plug 'machakann/vim-highlightedyank'
+
+" split and join lines
+Plug 'AndrewRadev/splitjoin.vim'
+
+" COMPLETION
+"Plug 'ncm2/ncm2'
+"Plug 'roxma/nvim-yarp'
+
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+let g:deoplete#enable_at_startup = 1
+
+" enable ncm2 for all buffers
+"autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" IMPORTANT: :help Ncm2PopupOpen for more information
+"set completeopt=noinsert,menuone,noselect
+set completeopt=noinsert,menuone,noselect
+
+Plug 'ncm2/float-preview.nvim'
+
+" deoplete
+Plug 'Shougo/context_filetype.vim'
+Plug 'Shougo/echodoc.vim'
+
+Plug 'Shougo/neco-syntax'
+
+" type tabnine::config in normal editor to configure (opens webserver)
+Plug 'tbodt/deoplete-tabnine', {'do': './install.sh'}
+" subscope detector html
+"Plug 'ncm2/ncm2-html-subscope'
+
+" php completion
+Plug 'phpactor/phpactor', {'for': 'php', 'branch': 'master', 'do': 'composer install --no-dev -o'}
+"Plug 'phpactor/ncm2-phpactor'
+
+" deoplete-phpactor/rplugin/python3/deoplete/source/phpactor.py added:
+" 	'info': suggestion['documentation']
+" to suggestions
+Plug 'kristijanhusak/deoplete-phpactor'
+
+" javascript completion
+"Plug 'ncm2/ncm2-tern', {'do': 'npm install'}
+
+"Plug 'carlitux/deoplete-ternjs'
+
+" css completion
+Plug 'othree/csscomplete.vim'
+"Plug 'ncm2/ncm2-cssomni'
+
+" c cpp completion
+"Plug 'ncm2/ncm2-pyclang'
+
+" lsp comp with deoplete
+"Plug 'autozimu/LanguageClient-neovim', {
+    "\ 'branch': 'next',
+    "\ 'do': 'bash install.sh',
+    "\ }
+
+" python
+Plug 'deoplete-plugins/deoplete-jedi'
+
+" fuzzy search (better with ripgrep)
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" multifile replace (requires ripgrep) :Ack
+Plug 'wincent/ferret'
+
+" automake + gutter
+"Plug 'neomake/neomake'
+
+" linting + lsp
+Plug 'dense-analysis/ale'
+
+" php refactoring
+Plug 'adoy/vim-php-refactoring-toolbox'
+
+" snippets
+Plug 'SirVer/ultisnips'
+
+" snippet helper
+Plug 'reconquest/vim-pythonx'
+
+" Tagbar
+Plug 'majutsushi/tagbar'
+
+" debug php !! 50 ms startuptime
+"Plug 'joonty/vdebug'
+
+" phpdoc
+Plug 'tobyS/vmustache'
+Plug 'tobyS/pdv'
+
+" run tests in file
+Plug 'vim-test/vim-test'
+
+" editor config
+Plug 'editorconfig/editorconfig-vim'
+
+" surround text objects
+Plug 'tpope/vim-surround'
+
+" repeat plugin action
+Plug 'tpope/vim-repeat'
+
+" jump mappings
+Plug 'tpope/vim-unimpaired'
+
+" indent text object
+Plug 'michaeljsmith/vim-indent-object'
+
+" additional text objects
+Plug 'wellle/targets.vim'
+
+" undi tree
+Plug 'mbbill/undotree'
+
+" file tools
+Plug 'tpope/vim-eunuch'
+
+" increment date, time
+Plug 'tpope/vim-speeddating'
+
+" statusline style
+Plug 'itchyny/lightline.vim'
+
+call plug#end()
+
+" Plugin Config:
+
+" gruvbox
+let g:gruvbox_italic=1
+colorscheme gruvbox
+
+" rainbow
+let g:rainbow_active = 1
+
+let g:rainbow_conf = {
+			\ 'separately': {
+				\ 'cmake': 0,
+				\ 'blade': 0,
+				\ 'html': 0,
+				\ 'vim-plug': 0,
+				\ 'scss': 0,
+				\ 'help': 0,
+				\ 'fzf': 0,
+			\ }
+			\ }
+
+let g:gitgutter_signs=0
+
+" vim-visual-multi
+let g:VM_theme  = 'neon'
+let g:VM_leader = '¢'
+let g:VM_maps   = {}
+let g:VM_maps['Find Under']         = '’'
+let g:VM_maps['Find Subword Under'] = '’'
+let g:VM_maps['Add Cursor Down']    = '<M-S-j>'
+let g:VM_maps['Add Cursor Up']      = '<M-S-k>'
+let g:VM_maps['Select h']           = '<M-S-h>'
+let g:VM_maps['Select l']           = '<M-S-l>'
+let g:VM_maps['Add Cursor At Pos']  = g:VM_leader . g:VM_leader
+
+" lsp client
+let g:LanguageClient_serverCommands = {
+			\ 'c':   ['/usr/bin/clangd'],
+			\ 'cpp': ['/usr/bin/clangd'],
+			\ 'dart': ['/home/aaron/.pub-cache/bin/dart_language_server'],
+			\ }
+
+call deoplete#custom#option('ignore_sources', {
+   \ '_': ['buffer']
+   \ })
+   "\ '_': ['around', 'buffer', 'tag']
+
+" fix for tern
+"call deoplete#custom#option('num_processes', 4)
+
+"let g:deoplete#sources#ternjs#docs = 1
+let g:deoplete#sources#jedi#show_docstring = 1
+
+let g:echodoc#enable_at_startup=1
+let g:echodoc#type='floating'
+
+let g:float_preview#docked=0
+
+" ---------------
+" ALE:
+let g:ale_linters = {
+			\   'php': ['psalm', 'phpmd', 'php'],
+			\}
+
+let g:ale_fixers = {
+			\ 'php':  ['php_cs_fixer'],
+			\ 'javascript': ['standard'],
+			\ 'json': ['jq'],
+			\ }
+
+" php
+let g:ale_php_phpmd_ruleset = 'ruleset.xml' " phpmd
+
+let g:ale_php_cs_fixer_options = '--allow-risky=yes' " php cs fixer
+
+" pyclang
+let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'
+let g:ncm2_pyclang#args_file_path = ['.clang_complete']
+
+" editor config
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" pdv
+let g:pdv_template_dir = $HOME."/.local/share/nvim/plugged/pdv/templates_snip"
+augroup php_dv
+	autocmd!
+	autocmd FileType php nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
+augroup END
+
+" vimtex
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vintex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='adbmg'
+
+" ultisnips
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<S-tab>'
+let g:UltiSnipsSnippetDirectories=[stdpath('data').'/mysnippets']
+let g:UltiSnipsEditSplit='tabdo'
+let g:UltiSnipsEnableSnipMate=0
+
+" fzf
+let g:fzf_buffers_jump = 1
+
+" Vdebug
+let g:vdebug_options = {}
+let g:vdebug_options['path_maps'] = {"/var/www/html/": "/mnt/data/dev/devlabor/exomind/source/"}
+nnoremap <F8> :python3 debugger.set_breakpoint()<CR>
+
+" lightline
+let g:lightline = {
+			\ 'active': {
+		    \ 'right': [ [ 'lineinfo' ],
+		    \            [ 'percent' ],
+		    \            [ 'gitbranch', 'fileencoding', 'filetype' ] ] },
+			\ 'component_function': {
+			\   'gitbranch': 'FugitiveHead'
+			\ },
+			\ }
+
+" Config:
+
+" hidden changed buffers
+set hidden
+
+" show chars bottom left
+set showcmd
+
+" highlight search
+set hlsearch
+
+" show position in file
+set ruler
+
+" confirm closing unsaved files
+set confirm
+
+" line numbers
+set relativenumber number
+
+" K completion
+set dictionary=/usr/share/dict/ngerman,/usr/share/dict/usa
+
+" O completion
+set omnifunc=syntaxcomplete#Complete
+
+set spelllang=de
+set spellfile=~/.config/nvim/spell/de.utf-8.add
+
+" Number of spaces that a <Tab> in the file counts for
+set tabstop=4
+
+" Number of spaces to use for each step of (auto)indent
+set shiftwidth=4
+
+" find searches recursively
+set path+=**
+
+" split buffers bottom right
+set splitbelow splitright
+
+" when curser off screen jump 10% of lines
+set scrolljump=-10
+
+" don't break line inside word
+set linebreak
+
+" show char when line broken
+set showbreak=→
+
+" jump while searching
+set incsearch
+
+" case sensitive if upper case letter
+set ignorecase smartcase
+
+" bad for fugitive
+set foldmethod=indent
+set foldlevelstart=99
+
+" gui colors
+set termguicolors
+
+" highlight cursor line
+"set cursorline
+
+" highlight cursor column
+"set cursorcolumn
+
+let g:my_remotes = {
+			\ 'exo': 'scp://exoshare//var/www/html/exomind/',
+			\ }
+
+function MyCompareRemote(remote)
+	let l:local_path = system('realpath --relative-base=' . getcwd() . ' ' . expand('%:p'))
+
+	if strpart(l:local_path, 0, 1) == '/'
+		echoerr 'Not a Project File: ' . l:local_path
+		return
+	endif
+
+	let l:remote_file = g:my_remotes[a:remote] . l:local_path
+	tab split
+	execute "vertical diffsplit " . l:remote_file
+endfunction
+
+" open manuals
+
+let g:my_manuals = {
+			\ 'php': ['<cword>', 'xdg-open "https://www.php.net/manual-lookup.php?pattern=%s&scope=quickref"'],
+			\ }
+
+function MyOpenManual(type)
+	call system(printf(g:my_manuals[a:type][1], expand(g:my_manuals[a:type][0])))
+endfunction
+
+" Mappings:
+" functions
+nmap <silent> µexo :call MyCompareRemote('exo')<CR>
+
+"k
+nmap <silent> ĸphp :call MyOpenManual('php')<CR>
+
+" last tab
+nmap gŧ :tablast<CR>
+" t
+" tab close and gT
+nmap ŧc :tabc<CR>
+nmap ŧo :tabo<CR>
+" s
+nmap ſ :noh<CR>
+" fs
+nmap đs :syntax sync fromstart<CR>
+" u
+nmap ↓ :UndotreeToggle<CR>
+" :
+nmap … @:
+" ;
+nmap × C;<ESC>
+
+" Plugin Mappings:
+
+" a -- ALE
+nmap æf :ALEFix<CR>
+nmap ænw :ALENextWrap<CR>
+nmap æpw :ALEPreviousWrap<CR>
+nmap æh :ALEHover<CR>
+nmap æi :ALEImport<CR>
+nmap ædd :ALEGoToDefinition<CR>
+nmap ædt :ALEGoToDefinition -tab<CR>
+nmap ædv :ALEGoToDefinition -vsplit<CR>
+nmap ædh :ALEGoToDefinition -split<CR>
+
+" v  -- vdebug
+nmap „e :VdebugEval 
+
+" fzf
+" g
+nmap ŋf :Files<CR>
+nmap ŋg :GFiles<CR>
+nmap ŋw :Windows<CR>
+nmap ŋb :Buffers<CR>
+nmap ŋt :Tags<CR>
+nmap ŋc :Commits<CR>
+nmap ŋr :Rg<CR>
+
+" fugitive
+" fb
+nmap đb :Gblame<CR>
+
+" tagbar
+" tb
+nmap ŧb :TagbarToggle<CR>
+
+" NERDtree
+" n
+nmap ”” :NERDTreeToggle<CR>
+nmap ”n :NERDTreeToggle<CR>
+nmap ”f :NERDTreeFind<CR>
+
+" File Specific Config:
+" php
+augroup my_php
+	autocmd!
+	autocmd FileType php setlocal suffixesadd=.php
+augroup END
+
+augroup my_phpactor
+	autocmd!
+	" a -- phpactor
+	autocmd FileType php nmap <buffer> æa :PhpactorContextMenu<CR>
+	autocmd FileType php nmap <buffer> ææ :PhpactorContextMenu<CR>
+	autocmd FileType php nmap <buffer> ædd :PhpactorGotoDefinition<CR>
+	autocmd FileType php nmap <buffer> ædv :PhpactorGotoDefinition vs<CR>
+	autocmd FileType php nmap <buffer> ædh :PhpactorGotoDefinition sp<CR>
+	autocmd FileType php nmap <buffer> ædt :PhpactorGotoDefinition tabe<CR>
+	autocmd FileType php nmap <buffer> æcv :PhpactorChangeVisibility<CR>
+	autocmd FileType php nmap <buffer> æce :PhpactorClassExpand<CR>
+	autocmd FileType php nmap <buffer> æci :PhpactorClassInflect<CR>
+	autocmd FileType php nmap <buffer> æcn :PhpactorClassNew<CR>
+	autocmd FileType php nmap <buffer> æcf :PhpactorCopyFile<CR>
+	autocmd FileType php nmap <buffer> æec :PhpactorExtractConstant<CR>
+	autocmd FileType php nmap <buffer> æee :PhpactorExtractExpression<CR>
+	autocmd FileType php nmap <buffer> æem :PhpactorExtractMethod<CR>
+	autocmd FileType php nmap <buffer> æfr :PhpactorFindReferences<CR>
+	autocmd FileType php nmap <buffer> æga :PhpactorGenerateAccessors<CR>
+	autocmd FileType php nmap <buffer> ægi :PhpactorGotoImplementations<CR>
+	autocmd FileType php nmap <buffer> ægt :PhpactorGotoType<CR>
+	autocmd FileType php nmap <buffer> æh :PhpactorHover<CR>
+	autocmd FileType php nmap <buffer> æic :PhpactorImportClass<CR>
+	autocmd FileType php nmap <buffer> æimc :PhpactorImportMissingClasses<CR>
+	autocmd FileType php nmap <buffer> æmf :PhpactorMoveFile<CR>
+	autocmd FileType php nmap <buffer> æn :PhpactorNavigate<CR>
+	autocmd FileType php nmap <buffer> æt :PhpactorTransform<CR>
+augroup END
+
+" javascript
+augroup my_javascript
+	autocmd FileType aavascript setlocal expandtab
+	autocmd FileType javascript setlocal shiftwidth=2
+augroup END
+
+" c
+augroup my_c
+	autocmd!
+	autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+	autocmd FileType c,hpp setlocal expandtab
+
+	" let g:my_build_dir=../build
+augroup END
+
+" cmake
+augroup my_cmake
+	autocmd!
+	autocmd FileType cmake setlocal expandtab
+augroup END
+
+" containers
+augroup my_container_file
+	autocmd!
+	autocmd BufRead,BufNewFile ContainerFile,ContainerTemplate set filetype=dockerfile
+augroup END
+
+" scp
+augroup my_scp
+	autocmd!
+	autocmd BufRead,BufNewFile,BufWritePost scp://* setlocal bufhidden=delete
+augroup END
+
+" glsl
+augroup my_glsl
+	autocmd!
+	autocmd BufRead,BufNewFile *.frag,*.vert set filetype=glsl
+augroup END
+
