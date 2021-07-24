@@ -36,7 +36,10 @@ require('packer').startup({
 		use 'tpope/vim-unimpaired'
 		use 'tpope/vim-repeat'
 		use 'tpope/vim-abolish'
-		use 'AndrewRadev/splitjoin.vim'
+		use {
+			'AndrewRadev/splitjoin.vim',
+			keys = {'gS', 'gJ'}
+		}
 		use {
 			'norcalli/nvim-colorizer.lua',
 			config = [[require'plugins.colorizer'.config()]]
@@ -71,7 +74,7 @@ require('packer').startup({
 		use {
 			'nvim-treesitter/nvim-treesitter-textobjects',
 			requires = 'nvim-treesitter/nvim-treesitter',
-			after = {'which-key.nvim'},
+			after = {'which-key.nvim', 'nvim-treesitter'},
 			config = [[require'plugins.treesitter-textobjects'.config()]]
 		}
 
@@ -86,19 +89,20 @@ require('packer').startup({
 		use {
 			'phaazon/hop.nvim',
 			after = {'which-key.nvim'},
+			keys = {'<leader>h1', '<leader>h2', '<leader>hw'},
 			config = [[require'plugins.hop'.config()]]
 		}
 
 		-- git
 		use {
 			'tpope/vim-fugitive',
-			opt = true,
-			cmd = {'Git', 'Gpull', 'Gstatus', 'Glog', 'Gdiffsplit',
+			cmd = {'Git', 'Gpull', 'Gfetch', 'Gstatus', 'Glog', 'Gdiffsplit',
 				'Gwrite', 'Gread', 'GRename', 'GMove'}
 		}
 		use {
 			'lewis6991/gitsigns.nvim',
 			requires = {'nvim-lua/plenary.nvim'},
+			after = {'vim-fugitive'},
 			config = [[require'plugins.gitsigns'.config()]]
 		}
 
@@ -127,8 +131,8 @@ require('packer').startup({
 		}
 		use {
 			'nvim-telescope/telescope-dap.nvim',
-			requires = {'mfussenegger/nvim-dap', 'nvim-telescope/telescope.nvim'},
-			after = 'telescope.nvim',
+			requires = {'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap'},
+			after = {'telescope.nvim', 'nvim-dap'},
 			-- TODO keymaps for common commands
 			config = [[require'plugins.telescope-dap'.config()]]
 		}
@@ -136,6 +140,7 @@ require('packer').startup({
 		-- snippets
 		use {
 			'L3MON4D3/LuaSnip',
+			event = 'InsertCharPre',
 			config = [[require'plugins.luasnip'.config()]]
 		}
 
@@ -147,11 +152,16 @@ require('packer').startup({
 		}
 		use {
 			'hrsh7th/nvim-compe',
+			event = 'InsertCharPre',
 			config = [[require'plugins.compe'.config()]]
 		}
-		use 'ray-x/lsp_signature.nvim'
+		use {
+			'ray-x/lsp_signature.nvim',
+			ft = {'dart', 'php', 'tex', 'bib', 'lua'}
+		}
 		use {
 			'glepnir/lspsaga.nvim',
+			after = {'lsp_signature.nvim'},
 			config = [[require'plugins.lspsaga'.config()]]
 		}
 
@@ -170,6 +180,7 @@ require('packer').startup({
 		-- dap
 		use {
 			'mfussenegger/nvim-dap',
+			keys = {'<F5>', '<F8>'},
 			config = [[require'plugins.dap'.config()]]
 		}
 		use {
