@@ -8,5 +8,6 @@
 
 !/.config/nvim
 /.config/nvim/.netrwhist
+/.config/nvim/plugin/packer_compiled.lua
 /.config/nvim/spell/*
 !/.config/nvim/spell/.gitkeep
