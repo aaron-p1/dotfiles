@@ -66,6 +66,9 @@ function plugin.config()
 			})
 		}
 	}
+
+	-- friendly-snippets
+	require'luasnip/loaders/from_vscode'.lazy_load()
 end
 
 return plugin

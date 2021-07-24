@@ -141,7 +141,12 @@ require('packer').startup({
 		use {
 			'L3MON4D3/LuaSnip',
 			event = 'InsertCharPre',
+			wants = 'friendly-snippets',
 			config = [[require'plugins.luasnip'.config()]]
+		}
+		use {
+			'rafamadriz/friendly-snippets',
+			event = 'InsertCharPre',
 		}
 
 		-- lsp
