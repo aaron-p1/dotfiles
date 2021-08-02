@@ -13,6 +13,8 @@ function plugin.config()
 		}
 	}
 
+	t.load_extension('fzf')
+
 	local helper = require'helper'
 	-- file
 	helper.keymap_cmd_leader_n_ns('ff', 'Telescope find_files')
