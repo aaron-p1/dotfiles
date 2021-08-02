@@ -29,7 +29,8 @@ function plugin.config()
 			-- Text objects
 			['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
 			['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
-		}
+		},
+		update_debounce = 300
 	}
 
 	local helper = require'helper'
