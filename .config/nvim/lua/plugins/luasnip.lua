@@ -37,11 +37,23 @@ function plugin.config()
 	local c = ls.choice_node
 	local d = ls.dynamic_node
 
+	-- Make sure to not pass an invalid command, as io.popen() may write over nvim-text.
+	local function shell(_, command)
+		local file = io.popen(command, "r")
+		local res = {}
+		for line in file:lines() do
+			table.insert(res, line)
+		end
+		return res
+	end
+
+
 	ls.snippets = {
 		all = {
-			parse(
-				'test', 'Just testing: ${1:Stuff}'
-			)
+			s('uuidgen', f(shell, {}, 'uuidgen')),
+			-- parse(
+			-- 	'test', 'Just testing: ${1:Stuff}'
+			-- )
 		},
 		php = {
 			-- [private] function $2() [use ($3)] $4{
