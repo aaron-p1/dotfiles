@@ -162,7 +162,7 @@ require('packer').startup({
 		}
 		use {
 			'ray-x/lsp_signature.nvim',
-			ft = {'dart', 'php', 'tex', 'bib', 'lua'}
+			ft = {'dart', 'php', 'html', 'css', 'tex', 'bib', 'lua'}
 		}
 		use {
 			'glepnir/lspsaga.nvim',

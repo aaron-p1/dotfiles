@@ -1,8 +1,6 @@
 local plugin = {}
 
 function plugin.config()
-	local nvim_lsp = require('lspconfig')
-
 	local on_attach = function (client, bufnr)
 		local helper = require'helper'
 
@@ -79,15 +77,64 @@ function plugin.config()
 		}
 	end
 
+	local nvim_lsp = require('lspconfig')
+	-- local configs = require('lspconfig/configs')
+	-- local util = require('lspconfig/util')
+
+	-- psalm
+	local serverExec = vim.fn.glob('vendor/bin/psalm')
+	if (serverExec == '') then
+		serverExec = 'psalm'
+	end
+
+	-- configs['psalm'] = {
+	-- 	default_config = {
+	-- 		cmd = {serverExec, '--language-server'},
+	-- 		filetypes = {'php'},
+	-- 		root_dir = util.root_pattern('composer.json', '.git')
+	-- 	}
+	-- }
+
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+	local onlyDiagnostics = vim.lsp.protocol.make_client_capabilities()
+	onlyDiagnostics.textDocument = {
+		publishDiagnostics = {
+			relatedInformation = true,
+			tagSupport = {
+				valueSet = { 1, 2 }
+			}
+		}
+	}
+
 	local servers = {
+		-- dart
 		'dartls',
-		'phpactor',
+		-- html
+		'html',
+		-- css
+		'cssls',
+		-- php
+		--'phpactor',
+		'intelephense',
+		-- {'psalm', onlyDiagnostics},
+		-- tex
 		'texlab'
 	}
 
-	for _, lsp in ipairs(servers) do
+	for _, lspdef in ipairs(servers) do
+		local lsp = lspdef
+		local cap = capabilities
+
+		if (type(lspdef) == 'table') then
+			lsp = lspdef[1]
+			cap = lspdef[2]
+		end
+
 		nvim_lsp[lsp].setup {
 			on_attach = on_attach,
+			capabilities = cap,
 		}
 	end
 
@@ -98,6 +145,7 @@ function plugin.config()
 
 	nvim_lsp.sumneko_lua.setup {
 		on_attach = on_attach,
+		capabilities = capabilities,
 		cmd = {'lua-language-server'},
 		settings = {
 			Lua = {
