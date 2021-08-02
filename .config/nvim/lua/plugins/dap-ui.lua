@@ -40,6 +40,10 @@ function plugin.config()
 			max_width = nil   -- Floats will be treated as percentage of your screen.
 		}
 	}
+
+	local helper = require'helper'
+
+	helper.keymap_lua_leader_n_ns('dd', [[require'dapui'.toggle()]])
 end
 
 return plugin
