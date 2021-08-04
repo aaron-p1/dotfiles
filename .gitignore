@@ -11,3 +11,7 @@
 /.config/nvim/plugin/packer_compiled.lua
 /.config/nvim/spell/*
 !/.config/nvim/spell/.gitkeep
+
+!/.config/zsh
+/.config/zsh/*
+!/.config/zsh/.zshrc
