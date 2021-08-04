@@ -152,8 +152,9 @@ require('packer').startup({
 		-- lsp
 		use {
 			'neovim/nvim-lspconfig',
-			after = {'which-key.nvim', 'lsp_signature.nvim', 'lspsaga.nvim'},
-			config = [[require'plugins.lspconfig'.config()]]
+			config = [[require'plugins.lspconfig'.config()]],
+			wants = {'which-key.nvim', 'lsp_signature.nvim', 'lspsaga.nvim'},
+			ft = {'dart', 'php', 'html', 'css', 'tex', 'bib', 'lua', 'json'},
 		}
 		use {
 			'hrsh7th/nvim-compe',
@@ -162,12 +163,12 @@ require('packer').startup({
 		}
 		use {
 			'ray-x/lsp_signature.nvim',
-			ft = {'dart', 'php', 'html', 'css', 'tex', 'bib', 'lua'}
+			opt = true,
 		}
 		use {
 			'glepnir/lspsaga.nvim',
-			after = {'lsp_signature.nvim'},
-			config = [[require'plugins.lspsaga'.config()]]
+			config = [[require'plugins.lspsaga'.config()]],
+			opt = true,
 		}
 
 		-- diagnostics
