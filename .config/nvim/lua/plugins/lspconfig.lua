@@ -1,5 +1,22 @@
 local plugin = {}
 
+local servers = {
+	-- dart
+	'dartls',
+	-- html
+	'html',
+	-- css
+	'cssls',
+	-- php
+	--'phpactor',
+	'intelephense',
+	-- {'psalm', onlyDiagnostics},
+	-- tex
+	'texlab',
+	-- json
+	'jsonls',
+}
+
 function plugin.config()
 	local on_attach = function (client, bufnr)
 		local helper = require'helper'
@@ -106,21 +123,6 @@ function plugin.config()
 				valueSet = { 1, 2 }
 			}
 		}
-	}
-
-	local servers = {
-		-- dart
-		'dartls',
-		-- html
-		'html',
-		-- css
-		'cssls',
-		-- php
-		--'phpactor',
-		'intelephense',
-		-- {'psalm', onlyDiagnostics},
-		-- tex
-		'texlab'
 	}
 
 	for _, lspdef in ipairs(servers) do
