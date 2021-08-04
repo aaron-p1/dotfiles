@@ -1,0 +1,23 @@
+#!/bin/sh
+
+PATH="$PATH:$HOME/.local/share/lsp/bin:$HOME/.pub-cache/bin"
+
+export EDITOR=/usr/bin/nvim
+export DIFFPROG="/usr/bin/nvim -d"
+export FZF_DEFAULT_COMMAND="rg --files --hidden"
+export PACUI_AUR_HELPER="paru"
+
+export LS_COLORS="$(vivid generate molokai)"
+
+# dont put duplicate lines
+HISTCONTROL=ignoreboth
+HISTSIZE=1000000
+HISTFILESIZE=1000000
+HISTTIMEFORMAT="%Y-%m-%d - %H:%M:%S: "
+
+
+# XDG workarounds
+if [ -n "$XDG_CONFIG_HOME" -a -n "$XDG_DATA_HOME" ]
+then
+	export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+fi

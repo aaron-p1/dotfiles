@@ -12,6 +12,8 @@
 /.config/nvim/spell/*
 !/.config/nvim/spell/.gitkeep
 
+!/.config/shellenv
+
 !/.config/zsh
 /.config/zsh/*
 !/.config/zsh/.zshrc
