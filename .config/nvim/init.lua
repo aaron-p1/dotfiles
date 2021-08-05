@@ -7,15 +7,12 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	  .. install_path)
 end
 
-vim.api.nvim_exec(
-  [[
+vim.cmd[[
   augroup Packer
     autocmd!
     autocmd BufWritePost ~/.config/nvim/init.lua nested source <afile> | PackerCompile
   augroup end
-]],
-  false
-)
+]]
 
 local helper = require'helper'
 
@@ -265,27 +262,21 @@ helper.setOptions(vim.o, {
 vim.api.nvim_set_keymap('t', '<A-Esc>', [[<c-\><c-n>]], { noremap = true })
 
 --Disable numbers in terminal mode
-vim.api.nvim_exec(
-	[[
+vim.cmd[[
 	augroup Terminal
-	autocmd!
-	autocmd TermOpen * set nonumber norelativenumber
+		autocmd!
+		autocmd TermOpen * set nonumber norelativenumber
 	augroup end
-	]],
-	false
-)
+]]
 
 -- YANK
 -- Highlight on yank
-vim.api.nvim_exec(
-	[[
+vim.cmd[[
 	augroup YankHighlight
-	autocmd!
-	autocmd TextYankPost * silent! lua vim.highlight.on_yank {timeout=300}
+		autocmd!
+		autocmd TextYankPost * silent! lua vim.highlight.on_yank {timeout=300}
 	augroup end
-	]],
-	false
-)
+]]
 
 -- Y yank until the end of line
 vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
@@ -322,12 +313,9 @@ end
 
 helper.keymap_lua_leader_n_ns('rexo', [[CompareRemotes('exo')]])
 
-vim.api.nvim_exec(
-	[[
+vim.cmd[[
 	augroup my_scp
 		autocmd!
 		autocmd BufNewFile,BufRead,BufLeave scp://* setlocal bufhidden=delete
 	augroup END
-	]],
-	false
-)
+]]
