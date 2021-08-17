@@ -17,6 +17,7 @@ vim.cmd[[
 local helper = require'helper'
 
 local use = require('packer').use
+local use_rocks = require('packer').use_rocks
 require('packer').startup({
 	function()
 		use 'wbthomason/packer.nvim'
@@ -198,6 +199,8 @@ require('packer').startup({
 			after = {'nvim-dap'},
 			config = [[require'plugins.dap-ui'.config()]]
 		}
+
+		use_rocks 'fun'
 	end,
 	config = {
 		display = {
