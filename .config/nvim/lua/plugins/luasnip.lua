@@ -63,20 +63,17 @@ function plugin.config()
 			-- [private] function $2() [use ($3)] $4{
 			--     $0
 			-- }
-			s('function', {
+			parse('of', 'protected function $0'),
+			parse('uf', 'public function $0'),
+			parse('if', 'private function $0'),
+			s('func', {
 				c(1, {
 					t('public'),
 					t('private'),
 					t('protected'),
 				}),
 				t(' function '), i(2), t('('), i(3), t(') '),
-				f(showIfUsed, {4}, 'use ('),
-				i(4),
-				f(showIfUsed, {4}, ') '),
-				c(5, {
-					t({'', '{', '\t'}),
-					t({'{', '\t'}),
-				}),
+				t({'', '{', '\t'}),
 				i(0),
 				t({'', '}'})
 			})
