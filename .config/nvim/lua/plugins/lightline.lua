@@ -52,11 +52,11 @@ function plugin.config()
 		return modified and '+' or not modifieable and '-' or ''
 	end
 
-	vim.api.nvim_exec([[
+	vim.cmd[[
 	function! LightlineTablineModified(tabnr)
 	return luaeval('LightlineTablineModified')(a:tabnr)
 	endfunction
-		]], false)
+	]]
 end
 
 return plugin
