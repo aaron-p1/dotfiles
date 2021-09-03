@@ -1,12 +1,9 @@
 local plugin = {}
 
 function plugin.config()
-	require('nvim-autopairs').setup()
-	require("nvim-autopairs.completion.compe").setup({
-		map_cr = true, --  map <CR> on insert mode
-		-- it will auto insert `(` after select function or method item
-		map_complete = true
-	})
+	require('nvim-autopairs').setup{
+		disable_filetype = {'TelescopePrompt', 'dap-repl', 'dapui_watches'}
+	}
 end
 
 return plugin

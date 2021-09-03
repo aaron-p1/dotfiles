@@ -48,7 +48,7 @@ require('packer').startup({
 		}
 		use {
 			'windwp/nvim-autopairs',
-			after = {'nvim-compe'},
+			after = {'nvim-cmp'},
 			config = [[require'plugins.autopairs'.config()]]
 		}
 
@@ -138,26 +138,54 @@ require('packer').startup({
 		-- snippets
 		use {
 			'L3MON4D3/LuaSnip',
-			event = 'InsertCharPre',
 			wants = 'friendly-snippets',
+			opt = true,
 			config = [[require'plugins.luasnip'.config()]]
 		}
 		use {
 			'rafamadriz/friendly-snippets',
-			event = 'InsertCharPre',
+			opt = true,
 		}
 
 		-- lsp
 		use {
 			'neovim/nvim-lspconfig',
 			config = [[require'plugins.lspconfig'.config()]],
-			wants = {'which-key.nvim', 'lsp_signature.nvim', 'lspsaga.nvim'},
+			wants = {'which-key.nvim', 'lsp_signature.nvim', 'lspsaga.nvim', 'nvim-cmp'},
 			ft = {'dart', 'php', 'html', 'css', 'tex', 'bib', 'lua', 'json'},
 		}
 		use {
-			'hrsh7th/nvim-compe',
+			'hrsh7th/nvim-cmp',
 			event = 'InsertCharPre',
-			config = [[require'plugins.compe'.config()]]
+			wants = {'LuaSnip'},
+			config = [[require'plugins.cmp'.config()]]
+		}
+		use {
+			'hrsh7th/cmp-buffer',
+			after = {'nvim-cmp'},
+		}
+		use {
+			'hrsh7th/cmp-path',
+			after = {'nvim-cmp'},
+		}
+		use {
+			'hrsh7th/cmp-calc',
+			after = {'nvim-cmp'},
+		}
+		use {
+			'saadparwaiz1/cmp_luasnip',
+			wants = {'LuaSnip'},
+			after = {'nvim-cmp'},
+		}
+		use {
+			'hrsh7th/cmp-nvim-lsp',
+			after = {'nvim-cmp'},
+		}
+		use {
+			'tzachar/cmp-tabnine',
+			run='./install.sh',
+			after = {'nvim-cmp'},
+			config = [[require'plugins.cmp-tabnine'.config()]]
 		}
 		use {
 			'ray-x/lsp_signature.nvim',
