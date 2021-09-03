@@ -34,6 +34,7 @@ require('packer').startup({
 		use 'tpope/vim-unimpaired'
 		use 'tpope/vim-repeat'
 		use 'tpope/vim-abolish'
+		use 'tpope/vim-characterize'
 		use {
 			'AndrewRadev/splitjoin.vim',
 			keys = {'gS', 'gJ'}
