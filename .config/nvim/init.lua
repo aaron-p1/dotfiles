@@ -271,6 +271,8 @@ helper.setOptions(vim.o, {
 	'splitbelow', 'splitright',
 	-- save undo history
 	'undofile',
+	--
+	'cursorline',
 
 	background = 'dark',
 
