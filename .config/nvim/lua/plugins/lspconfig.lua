@@ -4,7 +4,7 @@ local servers = {
 	-- dart
 	'dartls',
 	-- html
-	'html',
+	{server = 'html', filetypes = {'html', 'blade'}},
 	-- css
 	'cssls',
 	-- php
@@ -15,6 +15,12 @@ local servers = {
 	'texlab',
 	-- json
 	'jsonls',
+	-- yaml
+	'yamlls',
+	-- graphql
+	'graphql',
+	-- vue
+	'vuels',
 }
 
 function plugin.config()
@@ -130,14 +136,24 @@ function plugin.config()
 		local cap = capabilities
 
 		if (type(lspdef) == 'table') then
-			lsp = lspdef[1]
-			cap = lspdef[2]
-		end
+			local server = lspdef.server
 
-		nvim_lsp[lsp].setup {
-			on_attach = on_attach,
-			capabilities = cap,
-		}
+			lspdef.server = nil
+
+			if (not lspdef.on_attach) then
+				lspdef.on_attach = on_attach
+			end
+			if (not lspdef.capabilities) then
+				lspdef.capabilities = capabilities
+			end
+
+			nvim_lsp[server].setup(lspdef)
+		else
+			nvim_lsp[lsp].setup {
+				on_attach = on_attach,
+				capabilities = cap,
+			}
+		end
 	end
 
 	-- lua
