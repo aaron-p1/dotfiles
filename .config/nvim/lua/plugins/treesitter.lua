@@ -18,6 +18,15 @@ function plugin.config()
 		indent = {
 			enable = true,
 		},
+		autotag = {
+			enable = true,
+			filetypes = {
+				'html',
+				'xml',
+				'blade',
+				'vue'
+			}
+		}
 	}
 end
 

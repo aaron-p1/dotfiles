@@ -51,6 +51,9 @@ require('packer').startup({
 			after = {'nvim-cmp'},
 			config = [[require'plugins.autopairs'.config()]]
 		}
+		use {
+			'windwp/nvim-ts-autotag',
+		}
 
 		-- config
 		use {
@@ -67,6 +70,7 @@ require('packer').startup({
 		use {
 			'nvim-treesitter/nvim-treesitter',
 			run = ':TSUpdate',
+			wants = {'nvim-ts-autotag'},
 			config = [[require'plugins.treesitter'.config()]]
 		}
 		use {
