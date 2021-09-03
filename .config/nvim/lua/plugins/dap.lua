@@ -9,15 +9,16 @@ function plugin.config()
 	helper.keymap_lua_n_ns('<F4>', [[require'dap'.step_out()]])
 	-- continue or run
 	helper.keymap_lua_n_ns('<F5>', [[require'dap'.continue()]])
-	helper.keymap_lua_n_ns('<F6>', [[require'dap'.stop()]])
+	helper.keymap_lua_n_ns('<F6>', [[require'dap'.disconnect()]])
 	helper.keymap_lua_n_ns('<F7>', [[require'dap'.run_to_cursor()]])
 	helper.keymap_lua_n_ns('<F8>', [[require'dap'.toggle_breakpoint()]])
-	helper.keymap_lua_n_ns('<C-F8>', [[require'dap'.toggle_breakpoint(vim.fn.input('Breakpoint condition: '))]])
-	helper.keymap_lua_n_ns(
-		'<C-F8>', [[require'dap'.set_exception_breakpoints('uncaught')]])
+	helper.keymap_lua_leader_n_ns(
+		'<F8>',
+		[[require'dap'.toggle_breakpoint(vim.fn.input('Breakpoint condition: '))]]
+	)
 	helper.keymap_lua_n_ns('<F9>', [[require'dap'.list_breakpoints()]])
 	helper.keymap_lua_n_ns('<F10>', [[require'dap'.up()]])
-	helper.keymap_lua_n_ns('<C-F10>', [[require'dap'.down()]])
+	helper.keymap_lua_leader_n_ns('<F10>', [[require'dap'.down()]])
 
 
 	local dap = require('dap')
