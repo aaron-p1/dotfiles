@@ -17,8 +17,8 @@ function plugin.config()
 
 	local helper = require'helper'
 	-- file
-	helper.keymap_cmd_leader_n_ns('ff', 'Telescope find_files')
-	helper.keymap_cmd_leader_n_ns('fgf', 'Telescope git_files')
+	helper.keymap_cmd_leader_n_ns('fa', 'Telescope find_files find_command="fd,-uu,--type=f"')
+	helper.keymap_cmd_leader_n_ns('ff', 'Telescope find_files find_command=fd')
 	helper.keymap_cmd_leader_n_ns('fr', 'Telescope live_grep')
 	helper.keymap_cmd_leader_n_ns('fu', 'Telescope file_browser')
 	-- vim
