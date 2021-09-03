@@ -214,7 +214,8 @@ require('packer').startup({
 		}
 		use {
 			'dense-analysis/ale',
-			config = [[require'plugins.ale'.config()]]
+			config = [[require'plugins.ale'.config()]],
+			disable = true
 		}
 
 		-- dap
