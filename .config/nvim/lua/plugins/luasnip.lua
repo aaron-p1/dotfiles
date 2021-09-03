@@ -52,6 +52,9 @@ function plugin.config()
 	ls.snippets = {
 		all = {
 			s('uuidgen', f(shell, {}, 'uuidgen')),
+			s('date', f(shell, {}, 'date --iso-8601')),
+			s('datetime', f(shell, {}, 'date --rfc-3339=seconds')),
+			s('datetimei', f(shell, {}, 'date --iso-8601=seconds')),
 			-- parse(
 			-- 	'test', 'Just testing: ${1:Stuff}'
 			-- )
