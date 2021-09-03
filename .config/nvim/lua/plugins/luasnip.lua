@@ -25,7 +25,8 @@ function plugin.config()
 	local ls = require'luasnip'
 
 	ls.config.set_config{
-		updateevents = 'TextChanged,TextChangedI'
+		updateevents = 'TextChanged,TextChangedI',
+		region_check_events = 'InsertEnter',
 	}
 
 	local parse = ls.parser.parse_snippet
