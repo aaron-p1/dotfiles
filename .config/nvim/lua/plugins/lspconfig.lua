@@ -21,6 +21,8 @@ local servers = {
 	'graphql',
 	-- vue
 	'vuels',
+	-- haskell
+	'hls',
 }
 
 function plugin.config()

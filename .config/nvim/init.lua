@@ -160,7 +160,7 @@ require('packer').startup({
 			'neovim/nvim-lspconfig',
 			config = [[require'plugins.lspconfig'.config()]],
 			wants = {'which-key.nvim', 'lsp_signature.nvim', 'lspsaga.nvim', 'nvim-cmp'},
-			ft = {'dart', 'php', 'blade', 'html', 'css', 'scss', 'less', 'tex', 'bib', 'lua', 'json', 'yaml', 'graphql', 'vue'},
+			ft = {'dart', 'php', 'blade', 'html', 'css', 'scss', 'less', 'tex', 'bib', 'lua', 'json', 'yaml', 'graphql', 'vue', 'haskell'},
 		}
 		use {
 			'hrsh7th/nvim-cmp',
