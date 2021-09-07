@@ -95,6 +95,7 @@ plugins=(
 # fi
 
 HISTFILE="$HOME/.config/zsh/.zsh_history"
+setopt histignorealldups
 
 # escape delay in 1/100 s
 KEYTIMEOUT=1
