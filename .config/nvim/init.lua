@@ -122,7 +122,7 @@ require('packer').startup({
 		use {
 			'nvim-telescope/telescope.nvim',
 			requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
-			after = {'which-key.nvim'},
+			after = {'trouble.nvim'},
 			wants = {'telescope-fzf-native.nvim', 'telescope-symbols.nvim'},
 			config = [[require'plugins.telescope'.config()]]
 		}

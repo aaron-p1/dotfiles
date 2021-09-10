@@ -2,7 +2,20 @@ local plugin = {}
 
 function plugin.config()
 	local t = require('telescope')
+
+	local trouble = require('trouble.providers.telescope')
+
 	t.setup {
+		defaults = {
+			mappings = {
+				i = {
+					['<leader>ot'] = trouble.open_with_trouble
+				},
+				n = {
+					['<leader>ot'] = trouble.open_with_trouble
+				}
+			}
+		},
 		extensions = {
 			fzf = {
 				fuzzy = true,
