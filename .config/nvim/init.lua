@@ -212,11 +212,6 @@ require('packer').startup({
 			after = {'which-key.nvim'},
 			config = [[require'plugins.trouble'.config()]]
 		}
-		use {
-			'dense-analysis/ale',
-			config = [[require'plugins.ale'.config()]],
-			disable = true
-		}
 
 		-- dap
 		use {
