@@ -163,6 +163,12 @@ require('packer').startup({
 			ft = {'dart', 'php', 'blade', 'html', 'css', 'scss', 'less', 'tex', 'bib', 'lua', 'json', 'yaml', 'graphql', 'vue', 'haskell'},
 		}
 		use {
+			'jose-elias-alvarez/null-ls.nvim',
+			requires = {'nvim-lua/plenary.nvim'},
+			config = [[require'plugins.null-ls'.config()]],
+			after = {'nvim-lspconfig'}
+		}
+		use {
 			'hrsh7th/nvim-cmp',
 			event = 'InsertCharPre',
 			wants = {'LuaSnip'},
