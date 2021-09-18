@@ -330,7 +330,7 @@ helper.keymap_cmd_leader_n_ns('n', 'noh')
 
 -- tab
 helper.keymap_cmd_leader_n_ns('tt', 'tablast')
-helper.keymap_cmd_leader_n_ns('tc', 'tabclose')
+helper.keymap_lua_leader_n_ns('tc', [[ vim.api.nvim_command('tabclose'); for i=2,vim.v.count,1 do vim.api.nvim_command('tabclose') end]])
 helper.keymap_cmd_leader_n_ns('to', 'tabonly')
 
 -- syntax
