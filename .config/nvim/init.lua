@@ -100,7 +100,8 @@ require('packer').startup({
 		use {
 			'tpope/vim-fugitive',
 			cmd = {'Git', 'Gpull', 'Gfetch', 'Gstatus', 'Glog', 'Gdiffsplit',
-				'Gwrite', 'Gread', 'GRename', 'GMove'}
+				'Gwrite', 'Gread', 'GRename', 'GMove'},
+			config = [[require'plugins.fugitive'.config()]]
 		}
 		use {
 			'lewis6991/gitsigns.nvim',
